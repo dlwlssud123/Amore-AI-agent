@@ -1,0 +1,20 @@
+# 크롤링 관련
+selenium
+webdriver-manager
+beautifulsoup4
+
+# 데이터 & 벡터 DB 관련
+pandas
+numpy
+chromadb
+tiktoken
+
+# LLM & 랭체인 관련
+langchain
+langchain-openai
+langchain-community
+
+# 기타 유틸리티
+python-dotenv
+jupyter
+urllib3<3 # 버전 충돌 방지용 안전장치
