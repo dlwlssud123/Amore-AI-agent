@@ -8,6 +8,7 @@ from collections import Counter
 from vector_db import init_db, search_best_product
 from generator import generate_marketing_copy
 from dotenv import load_dotenv
+from vector_db import search_products
 
 # --- [초기 설정] ---
 load_dotenv()
@@ -131,17 +132,25 @@ with center:
         st.write("")
 
 # 3. 오른쪽: 검색
+
 with right:
     st.subheader("🔍 제품 검색")
     q = st.text_input("제품명/성분", placeholder="검색어 입력")
-    if q:
-        res = search_best_product(q)
-        if res:
-            with st.container(border=True):
-                st.markdown(f"**{res['name']}**")
-                st.caption(f"{res['price']}원")
-                st.write(res['description'])
-        else: st.warning("결과 없음")
+
+    if q and len(q.strip()) >= 2:
+        results = search_products(q, limit=50)
+
+        if results:
+            for p in results:
+                with st.container(border=True):
+                    st.markdown(f"**{p.get('name','(no name)')}**")
+                    st.caption(f"{p.get('price','')}원")
+                    st.write(p.get('description',''))
+        else:
+            st.warning("결과 없음")
+    elif q:
+        st.caption("검색어를 2글자 이상 입력해줘.")
+
 
 st.divider()
 ok = st.checkbox("✅ 최종 확인 완료")

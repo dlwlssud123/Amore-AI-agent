@@ -24,7 +24,8 @@ def load_product_data():
             price = str(row.get('price', '0'))
 
             # 검색용 텍스트 (AI가 이 내용을 보고 찾음)
-            search_text = f"[{brand}] {name} \n특징: {features} \n추천: {skin_type}"
+            ingredients = str(row.get('ingredients', ''))
+            search_text = f"[{brand}] {name}\n특징: {features}\n성분: {ingredients}\n추천: {skin_type}"
             
             product_info = {
                 "search_text": search_text,

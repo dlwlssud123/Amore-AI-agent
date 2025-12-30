@@ -63,3 +63,40 @@ def search_best_product(query):
     if not results['documents'] or not results['documents'][0]:
         return None
     return results['metadatas'][0][0]
+
+def search_products(query: str, limit: int = 50, min_len: int = 2):
+    """
+    제품명/성분 '포함' 검색 (진짜 substring match)
+    - 임베딩 fallback 없음(무관 검색어로도 결과 나오는 현상 방지)
+    - 너무 짧은 입력은 검색 안 함(예: 'ㅇ')
+    """
+    if not query:
+        return []
+    q = query.strip()
+    if len(q) < min_len:
+        return []
+
+    client = get_client()
+    try:
+        collection = client.get_collection(name="cosmetics", embedding_function=sentence_transformer_ef)
+    except Exception:
+        collection = init_db()
+        if collection is None:
+            return []
+
+    try:
+        data = collection.get(include=["documents", "metadatas"])
+        docs = data.get("documents") or []
+        metas = data.get("metadatas") or []
+    except Exception as e:
+        print(f"❌ [Vector DB] collection.get 실패: {e}")
+        return []
+
+    q_lower = q.lower()
+
+    matches = []
+    for doc, meta in zip(docs, metas):
+        if (doc or "").lower().find(q_lower) != -1:
+            matches.append(meta)
+
+    return matches[:limit]
