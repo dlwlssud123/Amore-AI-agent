@@ -8,6 +8,7 @@ from collections import Counter
 from vector_db import init_db, search_best_product
 from generator import generate_marketing_copy
 from dotenv import load_dotenv
+from sender import send_email
 
 # --- [초기 설정] ---
 load_dotenv()
@@ -144,5 +145,51 @@ with right:
         else: st.warning("결과 없음")
 
 st.divider()
-ok = st.checkbox("✅ 최종 확인 완료")
-st.button("📩 전송하기", disabled=not ok, use_container_width=True)
+st.subheader("📨 캠페인 발송")
+
+col_s1, col_s2 = st.columns([3, 1])
+with col_s1:
+    # 안전장치: 체크해야만 전송 가능
+    confirm_send = st.checkbox("✅ 메시지 검토를 완료했으며, 실제 발송에 동의합니다.")
+
+with col_s2:
+    if st.button("🚀 실제 전송 시작", type="primary", disabled=not confirm_send, use_container_width=True):
+        
+        # 진행률 바
+        progress_bar = st.progress(0)
+        status_text = st.empty()
+        
+        # 성공/실패 카운트
+        success_count = 0
+        fail_count = 0
+        
+        users = get_users()[:10] # 10명 대상
+        
+        for i, user in enumerate(users):
+            # 생성된 메시지 가져오기 (없으면 기본값)
+            msg_content = st.session_state.get('messages', {}).get(i, {}).get('copy', '')
+            
+            if msg_content:
+                status_text.text(f"📤 {user['name']}님에게 메일 전송 중...")
+                
+                # [실제 전송] 이메일이 없으면 더미 이메일 사용
+                target_email = user.get('email', 'dlwlssud123@naver.com') # 테스트용 본인 메일로 고정 추천
+                subject = f"🎁 {user['name']}님을 위한 맞춤 뷰티 솔루션이 도착했어요!"
+                
+                is_sent, log = send_email(target_email, subject, msg_content)
+                
+                if is_sent: success_count += 1
+                else: fail_count += 1
+            
+            time.sleep(0.5) # 너무 빠르면 스팸 차단될 수 있음
+            progress_bar.progress((i + 1) / 10)
+            
+        progress_bar.empty()
+        status_text.empty()
+        
+        # 결과 리포트
+        if fail_count == 0:
+            st.success(f"🎉 총 {success_count}명에게 성공적으로 발송되었습니다!")
+            st.balloons()
+        else:
+            st.warning(f"⚠️ 발송 완료: 성공 {success_count}건, 실패 {fail_count}건")
