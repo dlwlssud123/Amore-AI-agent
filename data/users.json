@@ -11,7 +11,8 @@
             "유분기"
         ],
         "shopping_style": "가성비 중시, 리뷰 꼼꼼히 확인",
-        "preferred_category": "트러블 케어"
+        "preferred_category": "트러블 케어",
+        "email": "vbnm963245@gmail.com"
     },
     {
         "user_id": "user_002",
@@ -24,7 +25,8 @@
             "수분 부족"
         ],
         "shopping_style": "필요한 것만 구매, 올인원 선호",
-        "preferred_category": "수분/보습"
+        "preferred_category": "수분/보습",
+        "email": "vbnm963245@gmail.com"
     },
     {
         "user_id": "user_003",
@@ -38,7 +40,8 @@
             "화장 들뜸"
         ],
         "shopping_style": "성분 분석 어플 활용, 비건 화장품 선호",
-        "preferred_category": "고보습 케어"
+        "preferred_category": "고보습 케어",
+        "email": "vbnm963245@gmail.com"
     },
     {
         "user_id": "user_004",
@@ -51,7 +54,8 @@
             "탄력 저하"
         ],
         "shopping_style": "브랜드 인지도 중시, 선물용 구매 다수",
-        "preferred_category": "안티에이징"
+        "preferred_category": "안티에이징",
+        "email": "vbnm963245@gmail.com"
     },
     {
         "user_id": "user_005",
@@ -65,7 +69,8 @@
             "알레르기"
         ],
         "shopping_style": "재구매율 높음, 샘플 먼저 사용",
-        "preferred_category": "더마/진정"
+        "preferred_category": "더마/진정",
+        "email": "vbnm963245@gmail.com"
     },
     {
         "user_id": "user_006",
@@ -78,7 +83,8 @@
             "넓은 모공"
         ],
         "shopping_style": "SNS 광고 보고 충동구매 경향 있음",
-        "preferred_category": "클렌징/모공"
+        "preferred_category": "클렌징/모공",
+        "email": "vbnm963245@gmail.com"
     },
     {
         "user_id": "user_007",
@@ -92,7 +98,8 @@
             "칙칙한 톤"
         ],
         "shopping_style": "세일 기간 대량 구매, 홈쇼핑 이용",
-        "preferred_category": "미백/화이트닝"
+        "preferred_category": "미백/화이트닝",
+        "email": "vbnm963245@gmail.com"
     },
     {
         "user_id": "user_008",
@@ -105,7 +112,8 @@
             "다크서클"
         ],
         "shopping_style": "배우자 추천으로 구매, 정기 구독 선호",
-        "preferred_category": "아이케어"
+        "preferred_category": "아이케어",
+        "email": "vbnm963245@gmail.com"
     },
     {
         "user_id": "user_009",
@@ -118,7 +126,8 @@
             "메이크업 지속력"
         ],
         "shopping_style": "신상 체험 선호, 패키지 디자인 중시",
-        "preferred_category": "베이스/프라이머"
+        "preferred_category": "베이스/프라이머",
+        "email": "vbnm963245@gmail.com"
     },
     {
         "user_id": "user_010",
@@ -132,6 +141,7 @@
             "건조함"
         ],
         "shopping_style": "고가 기능성 제품 선호, 오프라인 매장 방문",
-        "preferred_category": "프리미엄 라인"
+        "preferred_category": "프리미엄 라인",
+        "email": "vbnm963245@gmail.com"
     }
 ]
